@@ -1,6 +1,7 @@
 resource "aws_s3_bucket" "bucket" {
-  bucket = "${var.subdomain}.${var.domain}"
-  acl    = "public-read"
+  bucket        = "${var.subdomain}.${var.domain}"
+  acl           = "public-read"
+  force_destroy = true
 
   tags = {
     Name = "${var.subdomain}.${var.domain}"
