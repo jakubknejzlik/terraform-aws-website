@@ -5,7 +5,7 @@ data "archive_file" "lambda" {
 }
 
 resource "aws_iam_role" "lambda_role" {
-  name = "reportingdovrecka-sk-edge-role"
+  name = "${replace(var.subdomain,".","-")}-${replace(var.domain,".","-")}-edge-role"
 
   assume_role_policy = <<EOF
 {
