@@ -26,7 +26,7 @@ EOF
 
 resource "aws_lambda_function" "lambda" {
   filename         = "${path.module}/lambda.zip"
-  function_name    = "${replace(var.domain,".","-")}-edge"
+  function_name    = "${replace(var.subdomain,".","-")}-${replace(var.domain,".","-")}-edge"
   role             = "${aws_iam_role.lambda_role.arn}"
   handler          = "lambda.handler"
   source_code_hash = "${data.archive_file.lambda.output_base64sha256}"
