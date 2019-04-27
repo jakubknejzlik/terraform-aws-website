@@ -1,7 +1,7 @@
 data "archive_file" "lambda" {
   type        = "zip"
-  source_file = "lambda.js"
-  output_path = "lambda.zip"
+  source_file = "${path.module}/lambda.js"
+  output_path = "${path.module}/lambda.zip"
 }
 
 resource "aws_iam_role" "lambda_role" {
@@ -25,7 +25,7 @@ EOF
 }
 
 resource "aws_lambda_function" "lambda" {
-  filename         = "lambda.zip"
+  filename         = "${path.module}/lambda.zip"
   function_name    = "${replace(var.domain,".","-")}-edge"
   role             = "${aws_iam_role.lambda_role.arn}"
   handler          = "lambda.handler"
