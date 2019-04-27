@@ -14,7 +14,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 
   enabled         = true
   is_ipv6_enabled = true
-  comment         = "${var.domain}"
+  comment         = "${var.subdomain}.${var.domain}"
 
   # logging_config {
   #   include_cookies = false

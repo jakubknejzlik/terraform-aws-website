@@ -7,6 +7,8 @@ data "archive_file" "lambda" {
 resource "aws_iam_role" "lambda_role" {
   name = "${replace(var.subdomain,".","-")}-${replace(var.domain,".","-")}-edge-role"
 
+  force_detach_policies = true
+
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
