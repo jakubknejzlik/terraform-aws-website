@@ -26,6 +26,16 @@ resource "aws_iam_role" "lambda_role" {
 EOF
 }
 
+data "aws_iam_policy" "BasicExecution" {
+  arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
+resource "aws_iam_policy_attachment" "lambda_logs" {
+  name       = "lambda-allow-logs"
+  roles      = ["${aws_iam_role.lambda_role.name}"]
+  policy_arn = "${data.aws_iam_policy.BasicExecution.arn}"
+}
+
 resource "aws_lambda_function" "lambda" {
   filename         = "${path.module}/lambda.zip"
   function_name    = "${replace(var.subdomain,".","-")}-${replace(var.domain,".","-")}-edge"
