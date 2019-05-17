@@ -1,5 +1,6 @@
 module "myawesomesite" {
-  source = "github.com/jakubknejzlik/terraform-aws-website"
+  source = "github.com/novacloudcz/terraform-aws-website"
 
-  domain = "example.com"
+  subdomain = "www"
+  domain    = "example.com"
 }
