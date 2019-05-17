@@ -22,7 +22,7 @@ exports.handler = (event, context, callback) => {
   } else {
     // handle viewer request
     if (path.extname(request.uri) === '') {
-      request.uri = '/index.html';
+      request.uri = path.join(request.uri, 'index.html');
     }
     request.uri = '/' + domain + request.uri;
   }
