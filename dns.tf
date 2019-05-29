@@ -1,6 +1,6 @@
 # AWS Certificate Request DNS 
 resource "digitalocean_record" "cert" {
-  count  = "${length(local.cert_san_names)}"
+  count  = "${var.digitalocean_dns?length(local.cert_san_names):0}"
   domain = "${var.domain}"
   type   = "${lookup(aws_acm_certificate.cert.domain_validation_options[count.index],"resource_record_type")}"
   name   = "${replace(lookup(aws_acm_certificate.cert.domain_validation_options[count.index],"resource_record_name"),".${var.domain}.","")}"
@@ -10,6 +10,7 @@ resource "digitalocean_record" "cert" {
 
 # CloudFront DNS  
 resource "digitalocean_record" "www" {
+  count  = "${var.digitalocean_dns?1:0}"
   domain = "${var.domain}"
   type   = "CNAME"
   name   = "${var.subdomain}"
@@ -18,6 +19,7 @@ resource "digitalocean_record" "www" {
 }
 
 resource "digitalocean_record" "www_wildcard" {
+  count  = "${var.digitalocean_dns?1:0}"
   domain = "${var.domain}"
   type   = "CNAME"
   name   = "*.${var.subdomain}"
@@ -27,6 +29,7 @@ resource "digitalocean_record" "www_wildcard" {
 
 # this is used only for redirecting root domain to www
 resource "digitalocean_record" "root_redir" {
+  count  = "${var.digitalocean_dns?1:0}"
   domain = "${var.domain}"
   type   = "A"
   name   = "@"

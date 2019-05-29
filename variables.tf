@@ -5,3 +5,7 @@ variable "domain" {
 variable "subdomain" {
   default = "www"
 }
+
+variable "digitalocean_dns" {
+  default = false
+}
