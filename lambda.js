@@ -16,7 +16,7 @@ exports.handler = (event, context, callback) => {
     const bucketName = domain.replace('.s3.amazonaws.com', '');
     let newURI = request.uri.replace(`.${bucketName}/`, '/');
     if (newURI.indexOf(`/${bucketName}/`) === 0) {
-      newURI = newURI.replace(`/${bucketName}/`, '/www/');
+      newURI = newURI.replace(`/${bucketName}/`, '/master/');
     }
     request.uri = newURI;
   } else {
