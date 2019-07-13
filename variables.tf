@@ -6,6 +6,6 @@ variable "subdomain" {
   default = "www"
 }
 
-variable "digitalocean_dns" {
+variable "validation_record_fqdns" {
   default = false
 }
