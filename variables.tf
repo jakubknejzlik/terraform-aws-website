@@ -7,5 +7,5 @@ variable "subdomain" {
 }
 
 variable "validation_record_fqdns" {
-  default = false
+  default = []
 }
