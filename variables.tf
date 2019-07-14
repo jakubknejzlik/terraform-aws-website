@@ -6,6 +6,4 @@ variable "subdomain" {
   default = "www"
 }
 
-variable "validation_record_fqdns" {
-  default = []
-}
+variable "validation_record_fqdn" {}
